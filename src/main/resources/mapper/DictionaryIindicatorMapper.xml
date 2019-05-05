@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.DictionaryIindicatorMapper">
+  <resultMap id="BaseResultMap" type="module.DictionaryIindicator">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="content_length" jdbcType="INTEGER" property="contentLength" />
+    <result column="content_type" jdbcType="SMALLINT" property="contentType" />
+    <result column="options_content" jdbcType="VARCHAR" property="optionsContent" />
+    <result column="catalog_id" jdbcType="VARCHAR" property="catalogId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_delete" jdbcType="SMALLINT" property="isDelete" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, name, code, unit, content_length, content_type, options_content, catalog_id, 
+    create_time, update_time, is_delete
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dictionary_indicator
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from dictionary_indicator
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="module.DictionaryIindicator">
+    insert into dictionary_indicator (id, name, code, 
+      unit, content_length, content_type, 
+      options_content, catalog_id, create_time, 
+      update_time, is_delete)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{contentLength,jdbcType=INTEGER}, #{contentType,jdbcType=SMALLINT}, 
+      #{optionsContent,jdbcType=VARCHAR}, #{catalogId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=SMALLINT})
+  </insert>
+
+  <insert id="insertSelective" parameterType="module.DictionaryIindicator">
+    insert into dictionary_indicator
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="contentLength != null">
+        content_length,
+      </if>
+      <if test="contentType != null">
+        content_type,
+      </if>
+      <if test="optionsContent != null">
+        options_content,
+      </if>
+      <if test="catalogId != null">
+        catalog_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="contentLength != null">
+        #{contentLength,jdbcType=INTEGER},
+      </if>
+      <if test="contentType != null">
+        #{contentType,jdbcType=SMALLINT},
+      </if>
+      <if test="optionsContent != null">
+        #{optionsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="catalogId != null">
+        #{catalogId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="module.DictionaryIindicator">
+    update dictionary_indicator
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="contentLength != null">
+        content_length = #{contentLength,jdbcType=INTEGER},
+      </if>
+      <if test="contentType != null">
+        content_type = #{contentType,jdbcType=SMALLINT},
+      </if>
+      <if test="optionsContent != null">
+        options_content = #{optionsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="catalogId != null">
+        catalog_id = #{catalogId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="module.DictionaryIindicator">
+    update dictionary_indicator
+    set name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      content_length = #{contentLength,jdbcType=INTEGER},
+      content_type = #{contentType,jdbcType=SMALLINT},
+      options_content = #{optionsContent,jdbcType=VARCHAR},
+      catalog_id = #{catalogId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

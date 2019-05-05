@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.HfEducationMapper">
+  <resultMap id="BaseResultMap" type="module.HfEducation">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="hosp_code" jdbcType="VARCHAR" property="hospCode" />
+    <result column="dept_code" jdbcType="VARCHAR" property="deptCode" />
+    <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+    <result column="creator_id" jdbcType="VARCHAR" property="creatorId" />
+    <result column="creator_name" jdbcType="VARCHAR" property="creatorName" />
+    <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
+    <result column="cover_img_src" jdbcType="VARCHAR" property="coverImgSrc" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="ppt_src" jdbcType="VARCHAR" property="pptSrc" />
+    <result column="share_status" jdbcType="INTEGER" property="shareStatus" />
+    <result column="invalid_flag" jdbcType="INTEGER" property="invalidFlag" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="share_dept" jdbcType="VARCHAR" property="shareDept" />
+    <result column="share_dept_code" jdbcType="VARCHAR" property="shareDeptCode" />
+    <result column="share_dept_name" jdbcType="VARCHAR" property="shareDeptName" />
+    <result column="app_version" jdbcType="VARCHAR" property="appVersion" />
+    <result column="review_status" jdbcType="INTEGER" property="reviewStatus" />
+    <result column="refuse_reason" jdbcType="VARCHAR" property="refuseReason" />
+    <result column="review_user_id" jdbcType="VARCHAR" property="reviewUserId" />
+    <result column="review_user_name" jdbcType="VARCHAR" property="reviewUserName" />
+    <result column="review_time" jdbcType="TIMESTAMP" property="reviewTime" />
+    <result column="hosp_course_id" jdbcType="VARCHAR" property="hospCourseId" />
+    <result column="data_type" jdbcType="INTEGER" property="dataType" />
+    <result column="pack_education_id" jdbcType="VARCHAR" property="packEducationId" />
+    <result column="pack_education_name" jdbcType="VARCHAR" property="packEducationName" />
+    <result column="self_flag" jdbcType="INTEGER" property="selfFlag" />
+    <result column="diag_codes" jdbcType="VARCHAR" property="diagCodes" />
+    <result column="diag_names" jdbcType="VARCHAR" property="diagNames" />
+    <result column="label_codes" jdbcType="VARCHAR" property="labelCodes" />
+    <result column="label_names" jdbcType="VARCHAR" property="labelNames" />
+    <result column="education_desc" jdbcType="VARCHAR" property="educationDesc" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="module.HfEducationWithBLOBs">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="review_content" jdbcType="LONGVARCHAR" property="reviewContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, hosp_code, dept_code, dept_name, creator_id, creator_name, category_id, cover_img_src, 
+    title, ppt_src, share_status, invalid_flag, create_time, update_time, share_dept, 
+    share_dept_code, share_dept_name, app_version, review_status, refuse_reason, review_user_id, 
+    review_user_name, review_time, hosp_course_id, data_type, pack_education_id, pack_education_name, 
+    self_flag, diag_codes, diag_names, label_codes, label_names, education_desc
+  </sql>
+  <sql id="Blob_Column_List">
+    content, review_content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_repository_education
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_repository_education
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="module.HfEducationWithBLOBs">
+    insert into t_repository_education (id, hosp_code, dept_code, 
+      dept_name, creator_id, creator_name, 
+      category_id, cover_img_src, title, 
+      ppt_src, share_status, invalid_flag, 
+      create_time, update_time, share_dept, 
+      share_dept_code, share_dept_name, app_version, 
+      review_status, refuse_reason, review_user_id, 
+      review_user_name, review_time, hosp_course_id, 
+      data_type, pack_education_id, pack_education_name, 
+      self_flag, diag_codes, diag_names, 
+      label_codes, label_names, education_desc, 
+      content, review_content)
+    values (#{id,jdbcType=VARCHAR}, #{hospCode,jdbcType=VARCHAR}, #{deptCode,jdbcType=VARCHAR}, 
+      #{deptName,jdbcType=VARCHAR}, #{creatorId,jdbcType=VARCHAR}, #{creatorName,jdbcType=VARCHAR}, 
+      #{categoryId,jdbcType=VARCHAR}, #{coverImgSrc,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{pptSrc,jdbcType=VARCHAR}, #{shareStatus,jdbcType=INTEGER}, #{invalidFlag,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{shareDept,jdbcType=VARCHAR}, 
+      #{shareDeptCode,jdbcType=VARCHAR}, #{shareDeptName,jdbcType=VARCHAR}, #{appVersion,jdbcType=VARCHAR}, 
+      #{reviewStatus,jdbcType=INTEGER}, #{refuseReason,jdbcType=VARCHAR}, #{reviewUserId,jdbcType=VARCHAR}, 
+      #{reviewUserName,jdbcType=VARCHAR}, #{reviewTime,jdbcType=TIMESTAMP}, #{hospCourseId,jdbcType=VARCHAR}, 
+      #{dataType,jdbcType=INTEGER}, #{packEducationId,jdbcType=VARCHAR}, #{packEducationName,jdbcType=VARCHAR}, 
+      #{selfFlag,jdbcType=INTEGER}, #{diagCodes,jdbcType=VARCHAR}, #{diagNames,jdbcType=VARCHAR}, 
+      #{labelCodes,jdbcType=VARCHAR}, #{labelNames,jdbcType=VARCHAR}, #{educationDesc,jdbcType=VARCHAR}, 
+      #{content,jdbcType=LONGVARCHAR}, #{reviewContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="module.HfEducationWithBLOBs">
+    insert into t_repository_education
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="hospCode != null">
+        hosp_code,
+      </if>
+      <if test="deptCode != null">
+        dept_code,
+      </if>
+      <if test="deptName != null">
+        dept_name,
+      </if>
+      <if test="creatorId != null">
+        creator_id,
+      </if>
+      <if test="creatorName != null">
+        creator_name,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="coverImgSrc != null">
+        cover_img_src,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="pptSrc != null">
+        ppt_src,
+      </if>
+      <if test="shareStatus != null">
+        share_status,
+      </if>
+      <if test="invalidFlag != null">
+        invalid_flag,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="shareDept != null">
+        share_dept,
+      </if>
+      <if test="shareDeptCode != null">
+        share_dept_code,
+      </if>
+      <if test="shareDeptName != null">
+        share_dept_name,
+      </if>
+      <if test="appVersion != null">
+        app_version,
+      </if>
+      <if test="reviewStatus != null">
+        review_status,
+      </if>
+      <if test="refuseReason != null">
+        refuse_reason,
+      </if>
+      <if test="reviewUserId != null">
+        review_user_id,
+      </if>
+      <if test="reviewUserName != null">
+        review_user_name,
+      </if>
+      <if test="reviewTime != null">
+        review_time,
+      </if>
+      <if test="hospCourseId != null">
+        hosp_course_id,
+      </if>
+      <if test="dataType != null">
+        data_type,
+      </if>
+      <if test="packEducationId != null">
+        pack_education_id,
+      </if>
+      <if test="packEducationName != null">
+        pack_education_name,
+      </if>
+      <if test="selfFlag != null">
+        self_flag,
+      </if>
+      <if test="diagCodes != null">
+        diag_codes,
+      </if>
+      <if test="diagNames != null">
+        diag_names,
+      </if>
+      <if test="labelCodes != null">
+        label_codes,
+      </if>
+      <if test="labelNames != null">
+        label_names,
+      </if>
+      <if test="educationDesc != null">
+        education_desc,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="reviewContent != null">
+        review_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="hospCode != null">
+        #{hospCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null">
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null">
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorName != null">
+        #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="coverImgSrc != null">
+        #{coverImgSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="pptSrc != null">
+        #{pptSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="shareStatus != null">
+        #{shareStatus,jdbcType=INTEGER},
+      </if>
+      <if test="invalidFlag != null">
+        #{invalidFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shareDept != null">
+        #{shareDept,jdbcType=VARCHAR},
+      </if>
+      <if test="shareDeptCode != null">
+        #{shareDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shareDeptName != null">
+        #{shareDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="appVersion != null">
+        #{appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewStatus != null">
+        #{reviewStatus,jdbcType=INTEGER},
+      </if>
+      <if test="refuseReason != null">
+        #{refuseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewUserId != null">
+        #{reviewUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewUserName != null">
+        #{reviewUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewTime != null">
+        #{reviewTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hospCourseId != null">
+        #{hospCourseId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataType != null">
+        #{dataType,jdbcType=INTEGER},
+      </if>
+      <if test="packEducationId != null">
+        #{packEducationId,jdbcType=VARCHAR},
+      </if>
+      <if test="packEducationName != null">
+        #{packEducationName,jdbcType=VARCHAR},
+      </if>
+      <if test="selfFlag != null">
+        #{selfFlag,jdbcType=INTEGER},
+      </if>
+      <if test="diagCodes != null">
+        #{diagCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="diagNames != null">
+        #{diagNames,jdbcType=VARCHAR},
+      </if>
+      <if test="labelCodes != null">
+        #{labelCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="labelNames != null">
+        #{labelNames,jdbcType=VARCHAR},
+      </if>
+      <if test="educationDesc != null">
+        #{educationDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="reviewContent != null">
+        #{reviewContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="module.HfEducationWithBLOBs">
+    update t_repository_education
+    <set>
+      <if test="hospCode != null">
+        hosp_code = #{hospCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null">
+        dept_code = #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null">
+        dept_name = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        creator_id = #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorName != null">
+        creator_name = #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="coverImgSrc != null">
+        cover_img_src = #{coverImgSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="pptSrc != null">
+        ppt_src = #{pptSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="shareStatus != null">
+        share_status = #{shareStatus,jdbcType=INTEGER},
+      </if>
+      <if test="invalidFlag != null">
+        invalid_flag = #{invalidFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shareDept != null">
+        share_dept = #{shareDept,jdbcType=VARCHAR},
+      </if>
+      <if test="shareDeptCode != null">
+        share_dept_code = #{shareDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shareDeptName != null">
+        share_dept_name = #{shareDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="appVersion != null">
+        app_version = #{appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewStatus != null">
+        review_status = #{reviewStatus,jdbcType=INTEGER},
+      </if>
+      <if test="refuseReason != null">
+        refuse_reason = #{refuseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewUserId != null">
+        review_user_id = #{reviewUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewUserName != null">
+        review_user_name = #{reviewUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewTime != null">
+        review_time = #{reviewTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hospCourseId != null">
+        hosp_course_id = #{hospCourseId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataType != null">
+        data_type = #{dataType,jdbcType=INTEGER},
+      </if>
+      <if test="packEducationId != null">
+        pack_education_id = #{packEducationId,jdbcType=VARCHAR},
+      </if>
+      <if test="packEducationName != null">
+        pack_education_name = #{packEducationName,jdbcType=VARCHAR},
+      </if>
+      <if test="selfFlag != null">
+        self_flag = #{selfFlag,jdbcType=INTEGER},
+      </if>
+      <if test="diagCodes != null">
+        diag_codes = #{diagCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="diagNames != null">
+        diag_names = #{diagNames,jdbcType=VARCHAR},
+      </if>
+      <if test="labelCodes != null">
+        label_codes = #{labelCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="labelNames != null">
+        label_names = #{labelNames,jdbcType=VARCHAR},
+      </if>
+      <if test="educationDesc != null">
+        education_desc = #{educationDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="reviewContent != null">
+        review_content = #{reviewContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="module.HfEducationWithBLOBs">
+    update t_repository_education
+    set hosp_code = #{hospCode,jdbcType=VARCHAR},
+      dept_code = #{deptCode,jdbcType=VARCHAR},
+      dept_name = #{deptName,jdbcType=VARCHAR},
+      creator_id = #{creatorId,jdbcType=VARCHAR},
+      creator_name = #{creatorName,jdbcType=VARCHAR},
+      category_id = #{categoryId,jdbcType=VARCHAR},
+      cover_img_src = #{coverImgSrc,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      ppt_src = #{pptSrc,jdbcType=VARCHAR},
+      share_status = #{shareStatus,jdbcType=INTEGER},
+      invalid_flag = #{invalidFlag,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      share_dept = #{shareDept,jdbcType=VARCHAR},
+      share_dept_code = #{shareDeptCode,jdbcType=VARCHAR},
+      share_dept_name = #{shareDeptName,jdbcType=VARCHAR},
+      app_version = #{appVersion,jdbcType=VARCHAR},
+      review_status = #{reviewStatus,jdbcType=INTEGER},
+      refuse_reason = #{refuseReason,jdbcType=VARCHAR},
+      review_user_id = #{reviewUserId,jdbcType=VARCHAR},
+      review_user_name = #{reviewUserName,jdbcType=VARCHAR},
+      review_time = #{reviewTime,jdbcType=TIMESTAMP},
+      hosp_course_id = #{hospCourseId,jdbcType=VARCHAR},
+      data_type = #{dataType,jdbcType=INTEGER},
+      pack_education_id = #{packEducationId,jdbcType=VARCHAR},
+      pack_education_name = #{packEducationName,jdbcType=VARCHAR},
+      self_flag = #{selfFlag,jdbcType=INTEGER},
+      diag_codes = #{diagCodes,jdbcType=VARCHAR},
+      diag_names = #{diagNames,jdbcType=VARCHAR},
+      label_codes = #{labelCodes,jdbcType=VARCHAR},
+      label_names = #{labelNames,jdbcType=VARCHAR},
+      education_desc = #{educationDesc,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR},
+      review_content = #{reviewContent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="module.HfEducation">
+    update t_repository_education
+    set hosp_code = #{hospCode,jdbcType=VARCHAR},
+      dept_code = #{deptCode,jdbcType=VARCHAR},
+      dept_name = #{deptName,jdbcType=VARCHAR},
+      creator_id = #{creatorId,jdbcType=VARCHAR},
+      creator_name = #{creatorName,jdbcType=VARCHAR},
+      category_id = #{categoryId,jdbcType=VARCHAR},
+      cover_img_src = #{coverImgSrc,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      ppt_src = #{pptSrc,jdbcType=VARCHAR},
+      share_status = #{shareStatus,jdbcType=INTEGER},
+      invalid_flag = #{invalidFlag,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      share_dept = #{shareDept,jdbcType=VARCHAR},
+      share_dept_code = #{shareDeptCode,jdbcType=VARCHAR},
+      share_dept_name = #{shareDeptName,jdbcType=VARCHAR},
+      app_version = #{appVersion,jdbcType=VARCHAR},
+      review_status = #{reviewStatus,jdbcType=INTEGER},
+      refuse_reason = #{refuseReason,jdbcType=VARCHAR},
+      review_user_id = #{reviewUserId,jdbcType=VARCHAR},
+      review_user_name = #{reviewUserName,jdbcType=VARCHAR},
+      review_time = #{reviewTime,jdbcType=TIMESTAMP},
+      hosp_course_id = #{hospCourseId,jdbcType=VARCHAR},
+      data_type = #{dataType,jdbcType=INTEGER},
+      pack_education_id = #{packEducationId,jdbcType=VARCHAR},
+      pack_education_name = #{packEducationName,jdbcType=VARCHAR},
+      self_flag = #{selfFlag,jdbcType=INTEGER},
+      diag_codes = #{diagCodes,jdbcType=VARCHAR},
+      diag_names = #{diagNames,jdbcType=VARCHAR},
+      label_codes = #{labelCodes,jdbcType=VARCHAR},
+      label_names = #{labelNames,jdbcType=VARCHAR},
+      education_desc = #{educationDesc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
